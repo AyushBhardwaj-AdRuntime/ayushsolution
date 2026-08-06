@@ -65,14 +65,14 @@ const ConnectTerminal = () => {
           {/* Left Column: Text */}
           <div>
             <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-6">
-              Final Inquiry
+              Get In Touch
             </div>
             <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-9xl font-bold text-black leading-[0.8] mb-8 md:mb-12 tracking-tighter">
               READY TO <br />
               BUILD <span className="italic font-normal opacity-20">NEXT?</span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-black/60 font-medium max-w-md leading-relaxed mb-10 md:mb-16">
-              Currently accepting new system architecture inquiries and collaborative open-source ventures.
+              Currently accepting new project inquiries and collaborative ventures. Let's discuss your next big idea.
             </p>
 
             <div className="space-y-4">
@@ -95,7 +95,7 @@ const ConnectTerminal = () => {
             </div>
           </div>
 
-          {/* Right Column: Inquiry Protocol Form */}
+          {/* Right Column: Contact Form */}
           <div className="bg-white border border-black/10 p-6 sm:p-12 md:p-16 shadow-2xl relative overflow-hidden">
             {/* Success Overlay */}
             {status === "success" && (
@@ -117,7 +117,7 @@ const ConnectTerminal = () => {
             )}
 
             <h3 className="font-bold text-2xl md:text-3xl mb-6 md:mb-12 italic text-black">
-              Inquiry Protocol
+              Contact Form
             </h3>
             
             <form 
@@ -210,9 +210,9 @@ const ConnectTerminal = () => {
               <button 
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full py-4 md:py-6 bg-black text-white font-bold text-base md:text-lg uppercase hover:bg-black/90 transition-all tracking-widest disabled:opacity-50 group flex items-center justify-center gap-4"
+                className="w-full py-4 md:py-6 bg-indigo-600 text-white font-bold text-base md:text-lg uppercase hover:bg-indigo-700 transition-all tracking-widest disabled:opacity-50 group flex items-center justify-center gap-4 shadow-lg shadow-indigo-200"
               >
-                {status === "loading" ? "Transmitting..." : "Send Inquiry"}
+                {status === "loading" ? "Sending..." : "Send Message"}
                 <span className="group-hover:translate-x-2 transition-transform">→</span>
               </button>
 

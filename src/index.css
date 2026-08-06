@@ -5,20 +5,42 @@
 @layer base {
   :root {
     --nav-height: 80px;
-    --bg: #FFFFFF;
-    --text: #000000;
-    --accent: #000000;
+    --theme-bg: 255 255 255;
+    --theme-text: 0 0 0;
+    --theme-grid: #F2F2F2;
+    --theme-accent: #000000;
+    
+    /* Legacy variables for backwards compatibility if used elsewhere */
+    --bg: rgb(var(--theme-bg));
+    --text: rgb(var(--theme-text));
+    --accent: var(--theme-accent);
+    
     --font-heading: "Inter", sans-serif;
     --font-serif: "Fraunces", serif;
     --font-body: "Inter", sans-serif;
     --font-script: "Pinyon Script", cursive;
   }
 
+  html[data-theme='dark'] {
+    --theme-bg: 10 10 10;
+    --theme-text: 255 255 255;
+    --theme-grid: #1A1A1A;
+    --theme-accent: #FFFFFF;
+  }
+
+  html[data-theme='blue'] {
+    --theme-bg: 10 25 49;      /* #0A1931 - Deep dark blue */
+    --theme-text: 179 207 229; /* #B3CFE5 - Light pastel blue */
+    --theme-grid: 26 61 99;    /* #1A3D63 - Dark muted blue */
+    --theme-accent: 74 127 167; /* #4A7FA7 - Medium steel blue */
+  }
+
   html,
   body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: rgb(var(--theme-bg));
+    color: rgb(var(--theme-text));
     font-family: var(--font-body);
+    transition: background-color 0.5s ease, color 0.5s ease;
     @apply antialiased;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* IE and Edge */

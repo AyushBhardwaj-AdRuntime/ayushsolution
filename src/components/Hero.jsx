@@ -1,9 +1,44 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const phrases = [
+  "Building clean, scalable, and production-ready web applications.",
+  "Turning complex problems into elegant engineering solutions.",
+  "Developing highly interactive and accessible client experiences."
+];
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % phrases.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative w-full min-h-screen bg-white flex items-start lg:items-center pt-40 pb-20 lg:pt-32 lg:pb-0 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-transparent flex items-start lg:items-center pt-40 pb-20 lg:pt-32 lg:pb-0 overflow-hidden">
+      {/* Ambient Glowing Background Orb */}
+      <motion.div 
+        className="absolute w-[800px] h-[800px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none -z-10"
+        animate={{
+          x: mousePosition.x - 400,
+          y: mousePosition.y - 400,
+        }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.5 }}
+      />
+
       {/* Side Metadata (Vertical) */}
       <div className="absolute left-8 md:left-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-24 py-12">
         <span className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] rotate-180 [writing-mode:vertical-lr]">
@@ -57,36 +92,46 @@ const Hero = () => {
                 </motion.span>
               ))}
             </h1>
-            <p className="text-xl md:text-2xl text-black/60 font-medium max-w-lg leading-relaxed flex items-center gap-4">
+            <div className="text-xl md:text-2xl text-black/60 font-medium w-full max-w-lg leading-relaxed flex items-start gap-4">
               <motion.span 
                 initial={{ width: 0 }}
                 animate={{ width: "3rem" }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="h-[2px] bg-black/10"
+                className="h-[2px] bg-black/10 mt-3 shrink-0"
               ></motion.span>
-              Building clean, scalable, and production-ready web applications.
-            </p>
+              <div className="relative h-[80px] w-full">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={phraseIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
+                  >
+                    {phrases[phraseIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </div>
           </motion.div>
 
           <div className="mt-32 flex flex-col md:flex-row items-start md:items-center gap-12">
             <motion.div
-              whileHover={{ 
-                x: [0, -5, 5, -5, 5, 0],
-                transition: { duration: 0.4 }
-              }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative"
             >
               <Link
                 to="/systems"
-                className="inline-block px-10 py-5 bg-black text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group"
+                className="inline-block px-10 py-5 bg-black text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_10px_40px_rgba(79,70,229,0.4)] rounded-sm"
               >
-                <span className="relative z-10">Explore Archive</span>
+                <span className="relative z-10">View Selected Work</span>
                 <motion.div 
                   initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.4, ease: "circOut" }}
-                  className="absolute inset-0 bg-white/20"
+                  whileHover={{ x: "200%" }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                  className="absolute top-0 bottom-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
                 />
               </Link>
               {/* Architectural Accent */}
@@ -115,19 +160,24 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.8, ease: [0.2, 0.8, 0.2, 1] }}
-          className="lg:col-span-5 relative"
+          whileHover={{ scale: 1.02, y: -10 }}
+          className="lg:col-span-5 relative group cursor-pointer mt-16 lg:mt-0"
         >
-          <div className="aspect-[4/5] overflow-hidden grayscale contrast-125">
+          <div className="aspect-[4/5] overflow-hidden grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700 shadow-2xl rounded-sm">
             <img
-              src="/webme1.webp"
+              src="/ayush.png"
               alt="Ayush Bhardwaj — Software Engineer & Web Developer"
               fetchpriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-top scale-110"
+              className="w-full h-full object-cover object-top scale-110 group-hover:scale-100 transition-transform duration-700"
             />
           </div>
           {/* Subtle overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent group-hover:opacity-0 transition-opacity duration-700 rounded-sm"></div>
+          
+          {/* Decorative Corner Accents */}
+          <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-indigo-500 opacity-0 group-hover:opacity-100 transition-all duration-700" />
+          <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-indigo-500 opacity-0 group-hover:opacity-100 transition-all duration-700" />
         </motion.div>
       </div>
     </section>

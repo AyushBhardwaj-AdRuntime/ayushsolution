@@ -7,6 +7,22 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [time, setTime] = React.useState("");
   const location = useLocation();
+  const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'light');
+
+  React.useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    if (theme === 'light') setTheme('dark');
+    else if (theme === 'dark') setTheme('blue');
+    else setTheme('light');
+  };
 
   React.useEffect(() => {
     if (!menuOpen) return;
@@ -71,14 +87,21 @@ const Nav = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleTheme}
+            className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all hidden md:flex"
+            title={`Current theme: ${theme}. Click to change.`}
+          >
+            {theme === 'light' ? '🌙' : theme === 'dark' ? '🌊' : '☀️'}
+          </button>
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Link
               to="/connect"
-              className="text-sm font-bold border-b-2 border-black pb-1 hover:pb-2 transition-all flex items-center gap-2 group"
+              className="text-sm font-bold bg-indigo-600 text-white px-5 py-2.5 rounded-full hover:bg-indigo-700 hover:-translate-y-0.5 transition-all flex items-center gap-2 group shadow-lg shadow-indigo-200"
             >
               Book A Call
               <motion.svg 
@@ -181,7 +204,7 @@ const Nav = () => {
                     className="block w-full text-center py-4 bg-[#D8F1A0] hover:bg-white text-black font-extrabold text-xs uppercase tracking-[0.4em] transition-all duration-300 relative"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Inquiry Protocol &rarr;
+                    Let's Work Together &rarr;
                   </Link>
                 </motion.div>
               </div>

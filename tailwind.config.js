@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#FFFFFF",
-        text: "#000000",
-        grid: "#F2F2F2",
-        accent: "#000000",
+        white: "rgb(var(--theme-bg) / <alpha-value>)",
+        black: "rgb(var(--theme-text) / <alpha-value>)",
+        bg: "rgb(var(--theme-bg) / <alpha-value>)",
+        text: "rgb(var(--theme-text) / <alpha-value>)",
+        grid: "var(--theme-grid, #F2F2F2)",
+        accent: "var(--theme-accent, #000000)",
       },
       fontFamily: {
         heading: ["Inter", "sans-serif"],

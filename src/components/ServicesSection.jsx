@@ -13,14 +13,14 @@ const ServicesSection = () => {
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold text-black tracking-tighter leading-[0.85]">
               Surgical <br />
-              <span className="italic font-normal opacity-20">Solutions.</span>
+              <span className="italic font-normal opacity-20">Services.</span>
             </h2>
           </div>
           <Link 
             to="/connect"
             className="text-sm font-bold border-b-2 border-black pb-2 hover:pb-6 transition-all"
           >
-            Inquiry Protocol &rarr;
+            Contact Me &rarr;
           </Link>
         </div>
 

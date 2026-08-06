@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import SystemCard from "../SystemCard/SystemCard";
+import { customProjects } from "../../data/customProjects";
 
 const SystemsGrid = ({
   limit = Infinity,
@@ -42,7 +43,7 @@ const SystemsGrid = ({
           color: getRandomColor(index),
         }));
 
-        setRepos(mappedRepos);
+        setRepos([...customProjects, ...mappedRepos]);
       } catch (error) {
         console.error("Error fetching repos:", error);
       } finally {

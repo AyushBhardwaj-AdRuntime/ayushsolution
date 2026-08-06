@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { customProjects } from "../data/customProjects";
 
 export const useGitHubProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -91,7 +92,8 @@ export const useGitHubProjects = () => {
         }
 
         if (Array.isArray(data)) {
-          setProjects(data);
+          // Prepend custom projects to whatever data is returned
+          setProjects([...customProjects, ...data]);
         } else {
           console.error("API returned non-array data:", data);
           setProjects([]);
