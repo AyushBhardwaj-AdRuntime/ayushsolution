@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const skills = [
   { category: "Frontend", items: ["React", "TypeScript", "Redux", "Zustand", "Tailwind", "PWAs"] },
   { category: "Backend", items: ["Node.js", "Express", "MongoDB", "Socket.io", "REST APIs", "JWT"] },
-  { category: "Tooling", items: ["Vite", "Vercel", "Netlify", "Firebase", "Git", "Figma"] },
+  { category: "Tooling", items: ["Vite", "Vercel", "Web3Forms", "Firebase", "Git", "Figma"] },
   { category: "Real-time", items: ["WebSockets", "Live Presence", "Secure Sessions", "Instant Delivery"] },
-  { category: "Languages", items: ["JavaScript", "TypeScript", "HTML5", "CSS3"] },
+  { category: "AI & ML", items: ["Gemini AI", "LLM Evaluation", "Prompt Engineering"] },
   { category: "Core", items: ["Offline-first", "Local-first", "Scalable", "Production-ready"] },
 ];
 
@@ -30,7 +30,7 @@ const skillDetails = {
   // Tooling
   "Vite": { level: 95, metric: "Cold start: 8ms", logs: ["VITE: Initialising bundler", "HMR: Socket server listening", "DEPS: Pre-bundling dependencies", "STATUS: Hot Module Replacement online"] },
   "Vercel": { level: 90, metric: "Edge response: 12ms", logs: ["VERCEL: Compiling edge routing", "DEPLOY: Syncing build artifacts", "CDN: Global edge cache flushed", "STATUS: Edge functions warm"] },
-  "Netlify": { level: 85, metric: "Build SLA: 99.9%", logs: ["NETLIFY: Webhook trigger accepted", "ASSETS: Image optimization ready", "HEADERS: Redirect rules verified", "STATUS: Deployed build live"] },
+  "Web3Forms": { level: 85, metric: "Lead Capture: Active", logs: ["WEB3FORMS: Authenticating access key", "SMTP: Relay connection established", "PIPELINE: Form submission routed", "STATUS: Inbox delivery guaranteed"] },
   "Firebase": { level: 88, metric: "Firestore sync: 4ms", logs: ["FIREBASE: Checking SDK config", "AUTH: Anon sign-in validated", "SYNC: Firestore listeners active", "STATUS: DB socket connected"] },
   "Git": { level: 90, metric: "Branch strategy: Trunk", logs: ["GIT: Fetching origin metadata", "HEAD: Rebase successful", "INTEGRITY: Trees validation correct", "STATUS: Working directory clean"] },
   "Figma": { level: 80, metric: "Design tokens: Synced", logs: ["FIGMA: Pulling style declarations", "VECTORS: Rendering SVG paths", "LAYOUT: Autolayout rules applied", "STATUS: Assets synchronized"] },
@@ -40,6 +40,11 @@ const skillDetails = {
   "Live Presence": { level: 90, metric: "Heartbeat cycle: 5s", logs: ["PRESENCE: Broadcasting online status", "PEERS: Syncing client node list", "STATUS: Active user count synced"] },
   "Secure Sessions": { level: 92, metric: "Key exchange: ECDHE", logs: ["SECURE: TLS 1.3 handshake complete", "CIPHER: AES-256-GCM encrypted", "STATUS: Session secure"] },
   "Instant Delivery": { level: 90, metric: "Throughput: 15k/s", logs: ["QUEUE: Processing delivery pipeline", "ACK: Packet delivery receipt read", "STATUS: Pipeline clear"] },
+  
+  // AI & ML
+  "Gemini AI": { level: 95, metric: "Live API: Enabled", logs: ["GEMINI: Establishing bi-directional socket", "LLM: Streaming audio chunks", "INFER: Real-time candidate evaluation", "STATUS: Model stream active"] },
+  "LLM Evaluation": { level: 90, metric: "Accuracy score: 98%", logs: ["LLM: Parsing extracted text", "EVAL: Checking against rubric", "GENERATE: Generating dynamic response", "STATUS: Interview flow continuing"] },
+  "Prompt Engineering": { level: 92, metric: "Context window: 1M+", logs: ["PROMPT: Assembling system instructions", "TUNE: Adjusting temperature parameters", "STATUS: Context injected successfully"] },
   
   // Languages
   "JavaScript": { level: 95, metric: "Engine: Chrome V8", logs: ["JS: Compiling JIT byte-code", "GC: Memory sweep finished", "RUNTIME: ESNext features active", "STATUS: Thread execution stable"] },

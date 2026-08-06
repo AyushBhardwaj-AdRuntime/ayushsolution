@@ -21,36 +21,56 @@ const ConnectTerminal = () => {
     e.preventDefault();
     setStatus("loading");
     try {
-      await axios.post("/api/contact", formData);
-      setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        projectTitle: "General Inquiry",
-        summary: ""
+      // NOTE: User must replace 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' with their actual Web3Forms access key
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "e0b78000-c036-46d5-ac56-07f46fc674a1", 
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: `New Portfolio Inquiry: ${formData.projectTitle}`,
+          message: formData.summary,
+          from_name: "Ayush Portfolio Connect"
+        })
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          projectTitle: "General Inquiry",
+          summary: ""
+        });
+      } else {
+        throw new Error(result.message || "Web3Forms submission failed");
+      }
     } catch (err) {
       console.error("Submission error:", err);
       
-      // Fallback: If API fails (likely 404 in dev mode), use direct mailto link
-      if (err.response?.status === 404 || !err.response) {
-        console.warn("API unavailable. Falling back to direct mailto protocol.");
-        const subject = encodeURIComponent(`🚀 Inquiry: ${formData.projectTitle} | ${formData.name}`);
-        const body = encodeURIComponent(
-          `Name: ${formData.name}\n` +
-          `Email: ${formData.email}\n` +
-          `Phone: ${formData.phone || "Not provided"}\n` +
-          `Service: ${formData.projectTitle}\n\n` +
-          `Briefing:\n${formData.summary}`
-        );
-        window.location.href = `mailto:ayushbhardwaj1334@gmail.com?subject=${subject}&body=${body}`;
-        setStatus("success"); // Mark as success since the user is now sending it via client
-      } else {
-        setStatus("error");
-      }
+      // Fallback: If API fails, use direct mailto link
+      console.warn("Falling back to direct mailto protocol.");
+      const subject = encodeURIComponent(`🚀 Inquiry: ${formData.projectTitle} | ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Phone: ${formData.phone || "Not provided"}\n` +
+        `Service: ${formData.projectTitle}\n\n` +
+        `Briefing:\n${formData.summary}`
+      );
+      window.location.href = `mailto:ayushbhardwaj1334@gmail.com?subject=${subject}&body=${body}`;
+      setStatus("error"); 
     }
   };
+
 
   const socialLinks = [
     { label: "Email", href: "mailto:ayushbhardwaj1334@gmail.com" },
