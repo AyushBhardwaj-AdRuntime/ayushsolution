@@ -7,14 +7,14 @@
     --nav-height: 80px;
     --theme-bg: 255 255 255;
     --theme-text: 0 0 0;
-    --theme-grid: #F2F2F2;
+    --theme-grid: #1C352D;
     --theme-accent: #000000;
-    
+
     /* Legacy variables for backwards compatibility if used elsewhere */
     --bg: rgb(var(--theme-bg));
     --text: rgb(var(--theme-text));
     --accent: var(--theme-accent);
-    
+
     --font-heading: "Inter", sans-serif;
     --font-serif: "Fraunces", serif;
     --font-body: "Inter", sans-serif;
@@ -25,14 +25,18 @@
     --theme-bg: 10 10 10;
     --theme-text: 255 255 255;
     --theme-grid: #1A1A1A;
-    --theme-accent: #FFFFFF;
+    --theme-accent: #FDFBF0;
   }
 
   html[data-theme='blue'] {
-    --theme-bg: 10 25 49;      /* #0A1931 - Deep dark blue */
-    --theme-text: 179 207 229; /* #B3CFE5 - Light pastel blue */
-    --theme-grid: 26 61 99;    /* #1A3D63 - Dark muted blue */
-    --theme-accent: 74 127 167; /* #4A7FA7 - Medium steel blue */
+    --theme-bg: 10 25 49;
+    /* #0A1931 - Deep dark blue */
+    --theme-text: 179 207 229;
+    /* #B3CFE5 - Light pastel blue */
+    --theme-grid: 26 61 99;
+    /* #1A3D63 - Dark muted blue */
+    --theme-accent: 74 127 167;
+    /* #4A7FA7 - Medium steel blue */
   }
 
   html,
@@ -42,8 +46,10 @@
     font-family: var(--font-body);
     transition: background-color 0.5s ease, color 0.5s ease;
     @apply antialiased;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE and Edge */
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -90,6 +96,7 @@
   .section-spacing {
     @apply py-36;
   }
+
   @media (min-width: 768px) {
     .section-spacing {
       padding-top: 17rem;
@@ -151,7 +158,9 @@ html.lenis {
 }
 
 /* Extracted SystemDetail Readme Styles */
-.github-readme h1, .github-readme h2, .github-readme h3 {
+.github-readme h1,
+.github-readme h2,
+.github-readme h3 {
   font-family: 'Inter', sans-serif;
   margin-top: 4rem;
   margin-bottom: 1.5rem;
@@ -160,17 +169,83 @@ html.lenis {
   line-height: 1.1;
   letter-spacing: -0.04em;
 }
-.github-readme h1 { font-size: 3.5rem; border-bottom: 2px solid #000; padding-bottom: 1rem; }
-.github-readme h2 { font-size: 2.25rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; }
-.github-readme h3 { font-size: 1.5rem; }
-.github-readme p { font-family: 'Inter', sans-serif; font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 2rem; }
-.github-readme ul, .github-readme ol { margin-bottom: 2rem; padding-left: 2rem; list-style-type: square; }
-.github-readme li { font-family: 'Inter', sans-serif; font-size: 1.125rem; color: #444; margin-bottom: 0.75rem; }
-.github-readme code { background: rgba(0,0,0,0.05); padding: 0.2rem 0.5rem; border-radius: 0; font-family: monospace; font-size: 0.9em; font-weight: 600; color: #000; }
-.github-readme pre { background: #000; color: #fff; padding: 2rem; border-radius: 0; margin-bottom: 2.5rem; overflow-x: auto; }
-.github-readme img { max-width: 100%; height: auto; border: 1px solid rgba(0,0,0,0.1); margin: 3rem 0; }
-.github-readme a { color: #000; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
-.github-readme hr { border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 4rem 0; }
+
+.github-readme h1 {
+  font-size: 3.5rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 1rem;
+}
+
+.github-readme h2 {
+  font-size: 2.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.github-readme h3 {
+  font-size: 1.5rem;
+}
+
+.github-readme p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.github-readme ul,
+.github-readme ol {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  list-style-type: square;
+}
+
+.github-readme li {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+.github-readme code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0;
+  font-family: monospace;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #000;
+}
+
+.github-readme pre {
+  background: #000;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 0;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+}
+
+.github-readme img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 3rem 0;
+}
+
+.github-readme a {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 700;
+}
+
+.github-readme hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 4rem 0;
+}
 
 /* Extracted Footer Styles */
 .footer-wrapper {
@@ -181,9 +256,13 @@ html.lenis {
   gap: 20px;
   align-items: stretch;
 }
+
 @media (max-width: 860px) {
-  .footer-wrapper { grid-template-columns: 1fr; }
+  .footer-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
+
 .footer-left {
   position: relative;
   min-height: 450px;
@@ -194,8 +273,9 @@ html.lenis {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .footer-left-video {
   position: absolute;
   inset: 0;
@@ -207,9 +287,10 @@ html.lenis {
   opacity: 0.5;
   filter: grayscale(1);
 }
+
 .footer-right {
   background: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   padding: 48px;
   position: relative;
@@ -217,9 +298,13 @@ html.lenis {
   flex-direction: column;
   justify-content: space-between;
 }
+
 @media (max-width: 560px) {
-  .footer-right { padding: 24px; }
+  .footer-right {
+    padding: 24px;
+  }
 }
+
 .lucky-cube {
   width: 80px;
   height: 80px;
@@ -229,9 +314,10 @@ html.lenis {
   align-items: center;
   justify-content: center;
   transform: rotate(-10deg);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.2);
 }
+
 .footer-watermark {
   max-width: 1200px;
   margin: -40px auto 0;

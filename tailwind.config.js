@@ -8,7 +8,7 @@ export default {
         black: "rgb(var(--theme-text) / <alpha-value>)",
         bg: "rgb(var(--theme-bg) / <alpha-value>)",
         text: "rgb(var(--theme-text) / <alpha-value>)",
-        grid: "var(--theme-grid, #F2F2F2)",
+        grid: "var(--theme-grid, #1C352D)",
         accent: "var(--theme-accent, #000000)",
       },
       fontFamily: {
