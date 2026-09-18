@@ -35,7 +35,7 @@ const Footer = () => {
 
       <div className="footer-wrapper">
         {/* ═══ LEFT CARD ═══ */}
-        <div className="footer-left group">
+        <div className="footer-left group bg-black border border-white/5">
           <div className="footer-logo flex items-center gap-4 relative z-10">
             <span 
               style={{ fontFamily: "'Pinyon Script', cursive" }}
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
 
         {/* ═══ RIGHT CARD ═══ */}
-        <div className="footer-right">
+        <div className="footer-right bg-white border border-black/10">
           {/* Floating System Badge */}
           <div className="absolute -top-10 right-6 sm:right-12 z-10 flex flex-col gap-3 items-end scale-90 sm:scale-100 origin-right">
              <div className="lucky-cube group">

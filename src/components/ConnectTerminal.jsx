@@ -199,11 +199,11 @@ const ConnectTerminal = () => {
                   onChange={handleChange}
                   className="w-full bg-transparent border-none outline-none text-lg font-medium text-black cursor-pointer appearance-none"
                 >
-                  <option value="General Inquiry">Select a service protocol...</option>
+                  <option className="bg-white text-black" value="General Inquiry">Select a service protocol...</option>
                   {engageOptions.map(option => (
-                    <option key={option.id} value={option.title}>{option.title}</option>
+                    <option className="bg-white text-black" key={option.id} value={option.title}>{option.title}</option>
                   ))}
-                  <option value="Other / Custom">Other / Custom Engineering</option>
+                  <option className="bg-white text-black" value="Other / Custom">Other / Custom Engineering</option>
                 </select>
               </div>
 
