@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const Dot = ({ x, y, mouseX, mouseY }) => {
   const dotX = useMotionValue(x);
@@ -45,6 +46,11 @@ const Dot = ({ x, y, mouseX, mouseY }) => {
 };
 
 const NotFound = () => {
+  useDocumentSEO({
+    title: "404 - Not Found",
+    description: "The requested page could not be found in the Ayush Bhardwaj portfolio archive.",
+  });
+
   const containerRef = useRef(null);
   const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const skills = [
   { category: "Frontend", items: ["React", "TypeScript", "Redux", "Zustand", "Tailwind", "PWAs"] },
   { category: "Backend", items: ["Node.js", "Express", "MongoDB", "Socket.io", "REST APIs", "JWT"] },
-  { category: "Tooling", items: ["Vite", "Vercel", "Web3Forms", "Firebase", "Git", "Figma"] },
+  { category: "Tooling", items: ["Vite", "Vercel", "Nodemailer", "Firebase", "Git", "Figma"] },
   { category: "Real-time", items: ["WebSockets", "Live Presence", "Secure Sessions", "Instant Delivery"] },
   { category: "AI & ML", items: ["Gemini AI", "LLM Evaluation", "Prompt Engineering"] },
   { category: "Core", items: ["Offline-first", "Local-first", "Scalable", "Production-ready"] },
@@ -30,7 +30,7 @@ const skillDetails = {
   // Tooling
   "Vite": { level: 95, metric: "Cold start: 8ms", logs: ["VITE: Initialising bundler", "HMR: Socket server listening", "DEPS: Pre-bundling dependencies", "STATUS: Hot Module Replacement online"] },
   "Vercel": { level: 90, metric: "Edge response: 12ms", logs: ["VERCEL: Compiling edge routing", "DEPLOY: Syncing build artifacts", "CDN: Global edge cache flushed", "STATUS: Edge functions warm"] },
-  "Web3Forms": { level: 85, metric: "Lead Capture: Active", logs: ["WEB3FORMS: Authenticating access key", "SMTP: Relay connection established", "PIPELINE: Form submission routed", "STATUS: Inbox delivery guaranteed"] },
+  "Nodemailer": { level: 85, metric: "Lead Capture: Environment-driven", logs: ["API: Validating contact payload", "SMTP: Loading server credentials", "PIPELINE: Preparing inbox delivery", "STATUS: Awaiting provider response"] },
   "Firebase": { level: 88, metric: "Firestore sync: 4ms", logs: ["FIREBASE: Checking SDK config", "AUTH: Anon sign-in validated", "SYNC: Firestore listeners active", "STATUS: DB socket connected"] },
   "Git": { level: 90, metric: "Branch strategy: Trunk", logs: ["GIT: Fetching origin metadata", "HEAD: Rebase successful", "INTEGRITY: Trees validation correct", "STATUS: Working directory clean"] },
   "Figma": { level: 80, metric: "Design tokens: Synced", logs: ["FIGMA: Pulling style declarations", "VECTORS: Rendering SVG paths", "LAYOUT: Autolayout rules applied", "STATUS: Assets synchronized"] },
