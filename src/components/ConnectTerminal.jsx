@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 import { engageOptions } from "../data/engage";
 
 const ConnectTerminal = () => {
@@ -21,27 +20,24 @@ const ConnectTerminal = () => {
     e.preventDefault();
     setStatus("loading");
     try {
-      // NOTE: User must replace 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' with their actual Web3Forms access key
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "e0b78000-c036-46d5-ac56-07f46fc674a1", 
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          subject: `New Portfolio Inquiry: ${formData.projectTitle}`,
-          message: formData.summary,
-          from_name: "Ayush Portfolio Connect"
-        })
+          summary: formData.summary,
+          projectTitle: formData.projectTitle,
+        }),
       });
 
       const result = await response.json();
 
-      if (result.success) {
+      if (response.ok && result.success) {
         setStatus("success");
         setFormData({
           name: "",
@@ -51,7 +47,7 @@ const ConnectTerminal = () => {
           summary: ""
         });
       } else {
-        throw new Error(result.message || "Web3Forms submission failed");
+        throw new Error(result.message || "Contact form submission failed");
       }
     } catch (err) {
       console.error("Submission error:", err);

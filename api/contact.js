@@ -1,5 +1,14 @@
 import nodemailer from 'nodemailer';
 
+const escapeHtml = (value) =>
+  value.replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  })[character]);
+
 export const config = {
   runtime: 'nodejs',
 };
@@ -30,7 +39,19 @@ export default async function handler(req, res) {
   const safePhone = phone ? phone.trim() : 'Not provided';
   const safeSummary = summary.trim();
   const safeProjectTitle = projectTitle?.trim() || 'Engage page';
+  const htmlName = escapeHtml(safeName);
+  const htmlEmail = escapeHtml(safeEmail);
+  const htmlPhone = escapeHtml(safePhone);
+  const htmlSummary = escapeHtml(safeSummary);
+  const htmlProjectTitle = escapeHtml(safeProjectTitle);
   const timestamp = new Date().toLocaleString();
+  const recipient = process.env.CONTACT_RECIPIENT || 'ayushbhardwaj1334@gmail.com';
+
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    return res.status(503).json({
+      message: 'Contact email is not configured. Set EMAIL_USER and EMAIL_PASS.',
+    });
+  }
 
   try {
     const transporter = nodemailer.createTransport({
@@ -67,26 +88,26 @@ export default async function handler(req, res) {
       <div class="container">
         <div class="header">
           <h1 class="title">🚀 New Startup Inquiry</h1>
-          <div style="font-family: monospace; font-size: 12px; margin-top: 5px; color: #c8ff00;">${safeProjectTitle}</div>
+          <div style="font-family: monospace; font-size: 12px; margin-top: 5px; color: #c8ff00;">${htmlProjectTitle}</div>
         </div>
         <div class="content">
           <div class="field">
             <span class="label">Client Identity</span>
-            <div class="value"><strong>${safeName}</strong></div>
+            <div class="value"><strong>${htmlName}</strong></div>
           </div>
           
           <div class="field">
             <span class="label">Contact Coordinates</span>
             <div class="value">
-              <a href="mailto:${safeEmail}" style="color: #c8ff00; text-decoration: none;">${safeEmail}</a>
+              <a href="mailto:${htmlEmail}" style="color: #c8ff00; text-decoration: none;">${htmlEmail}</a>
               <br>
-              <span style="color: #bbb; font-size: 14px;">${safePhone}</span>
+              <span style="color: #bbb; font-size: 14px;">${htmlPhone}</span>
             </div>
           </div>
 
           <div class="field">
             <span class="label">Project Briefing</span>
-            <div class="box">${safeSummary}</div>
+            <div class="box">${htmlSummary}</div>
           </div>
           
           <div class="field">
@@ -120,7 +141,7 @@ Reply to: ${safeEmail}
 
     await transporter.sendMail({
       from: `"Ayush Bhardwaj" <${process.env.EMAIL_USER}>`,
-      to: 'ayushbhardwaj1334@gmail.com',
+      to: recipient,
       replyTo: safeEmail, // Critical: replies go to client
       subject: `🚀 New Startup Inquiry — ${safeProjectTitle} | ${safeName}`,
       text: textContent,

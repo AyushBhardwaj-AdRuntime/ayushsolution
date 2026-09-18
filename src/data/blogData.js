@@ -57,7 +57,8 @@ export const blogPosts = [
 
       <p>The biggest change wasn’t my resume—it was my standards.</p>
     `,
-    isFeatured: true
+    isFeatured: true,
+    published: true
   },
   {
     id: 'gsoc-selection-reality',
@@ -73,7 +74,8 @@ export const blogPosts = [
       <p>Most contributors focus on quantity. Real organizations focus on <strong>signal quality</strong>. Are your PRs documented? Do you handle edge cases? How do you respond when your code is torn apart in a review? That is where the selection happens.</p>
       
       <p>I'll be branching out into more tactical guides on proposal writing and how specific orgs like C2SI evaluate their contributors soon.</p>
-    `
+    `,
+    published: true
   },
   {
     id: 'hacktoberfest-to-gsoc',
@@ -82,7 +84,8 @@ export const blogPosts = [
     date: "May 2026",
     excerpt: "A personal narrative on starting early, managing college expectations, and building a technical identity from day one.",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop", // Laptop Tech
-    content: `<p>Coming soon: The narrative arc of my first year in college and how OSS became my primary education.</p>`
+    content: `<p>Coming soon: The narrative arc of my first year in college and how OSS became my primary education.</p>`,
+    published: false
   },
   {
     id: 'pr-review-lessons',
@@ -91,7 +94,8 @@ export const blogPosts = [
     date: "May 2026",
     excerpt: "Code is read more than it is written. Learning the art of the review and why feedback loops are an engineer's greatest tool.",
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop", // Dark Code
-    content: `<p>Coming soon: A deep dive into the feedback loops that define professional software development.</p>`
+    content: `<p>Coming soon: A deep dive into the feedback loops that define professional software development.</p>`,
+    published: false
   },
   {
     id: 'working-code-isnt-enough',
@@ -100,8 +104,11 @@ export const blogPosts = [
     date: "June 2026",
     excerpt: "Engineering is the art of tradeoffs. Exploring maintainability, architecture awareness, and why 'working' is just the starting point.",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2070&auto=format&fit=crop", // Abstract Tech
-    content: `<p>Coming soon: My strongest take on the transition into engineering maturity.</p>`
+    content: `<p>Coming soon: My strongest take on the transition into engineering maturity.</p>`,
+    published: false
   }
 ];
+
+export const publishedBlogPosts = blogPosts.filter((post) => post.published);
 
 export const categories = ["Architecture", "Technical", "Career", "Philosophy", "Story"];

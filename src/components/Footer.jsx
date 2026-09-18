@@ -36,14 +36,6 @@ const Footer = () => {
       <div className="footer-wrapper">
         {/* ═══ LEFT CARD ═══ */}
         <div className="footer-left group">
-          <video 
-            className="footer-left-video" 
-            autoPlay muted loop playsInline preload="auto"
-            crossOrigin="anonymous"
-          >
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260503_104800_bc43ae09-f494-43e3-97d7-2f8c1692cfd7.mp4" type="video/mp4" />
-          </video>
-          
           <div className="footer-logo flex items-center gap-4 relative z-10">
             <span 
               style={{ fontFamily: "'Pinyon Script', cursive" }}
@@ -133,23 +125,9 @@ const Footer = () => {
                    Systems move fast.<br />
                    <span className="text-black text-xl font-black">Stay ahead with Ayush.</span>
                  </h4>
-                 <form 
-                   onSubmit={(e) => { e.preventDefault(); alert("Subscription successful!"); }}
-                   className="bg-white border border-black p-1 sm:p-2 flex flex-col sm:flex-row shadow-sm focus-within:ring-2 ring-black transition-all rounded-none w-full gap-2"
-                 >
-                    <input 
-                     type="email" 
-                     required
-                     placeholder="Engineering updates..." 
-                     className="flex-1 px-4 py-2 sm:py-3 bg-transparent border-none text-sm font-bold text-black placeholder-black/20 focus:outline-none w-full"
-                    />
-                    <button 
-                      type="submit"
-                      className="px-6 sm:px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-none hover:bg-black/80 transition-all w-full sm:w-auto shrink-0"
-                    >
-                      Subscribe
-                    </button>
-                 </form>
+                 <p className="border-l-2 border-black pl-4 text-sm font-medium text-black/50">
+                   Newsletter updates are not active yet. Follow the engineering log in the Blogs section.
+                 </p>
               </div>
           </div>
         </div>

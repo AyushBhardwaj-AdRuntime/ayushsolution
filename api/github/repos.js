@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const USERNAME = "AyushBhardwaj-AdRuntime";
 
   if (!GITHUB_TOKEN) {
-    return res.status(500).json({ error: "GITHUB_TOKEN not configured" });
+    return res.status(200).json([]);
   }
 
   // GraphQL Query for Pinned Items or All Repos

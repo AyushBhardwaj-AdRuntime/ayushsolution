@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 import DOMPurify from "dompurify";
+import { customProjects } from "../data/customProjects";
 
 const SystemDetail = () => {
   const { slug } = useParams();
@@ -10,8 +11,9 @@ const SystemDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("code"); // code, live
+  const customProject = customProjects.find((project) => project.slug === slug);
 
-  const prettyName = slug
+  const prettyName = customProject?.title || slug
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -23,6 +25,32 @@ const SystemDetail = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
+      setError(null);
+
+      if (customProject) {
+        setData({
+          isCustom: true,
+          name: customProject.title,
+          description: customProject.description,
+          url: customProject.link,
+          homepage: customProject.link,
+          image: customProject.image,
+          languages: Object.fromEntries(customProject.tech.map((technology) => [technology, 1])),
+          topics: customProject.features,
+          readmeHtml: `
+            <h2>Problem</h2>
+            <p>${customProject.problem}</p>
+            <h2>Solution</h2>
+            <p>${customProject.solution}</p>
+            <h2>Impact</h2>
+            <p>${customProject.impact}</p>
+          `,
+        });
+        setActiveTab("live");
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await fetch(`/api/github/details?name=${slug}`);
         let json;
@@ -84,7 +112,7 @@ const SystemDetail = () => {
     };
 
     fetchDetails();
-  }, [slug]);
+  }, [customProject, slug]);
 
   if (loading) {
     return (
@@ -146,15 +174,17 @@ const SystemDetail = () => {
             </h1>
           </div>
           <div className="flex flex-wrap gap-4">
-            <a
-              href={data.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 bg-black text-white font-bold text-sm tracking-widest uppercase hover:bg-black/80 transition-all"
-            >
-              Source Code
-            </a>
-            {data.homepage && (
+            {data.url && (
+              <a
+                href={data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-black text-white font-bold text-sm tracking-widest uppercase hover:bg-black/80 transition-all"
+              >
+                {data.isCustom ? "View Project" : "Source Code"}
+              </a>
+            )}
+            {!data.isCustom && data.homepage && (
               <a
                 href={data.homepage}
                 target="_blank"
@@ -173,16 +203,18 @@ const SystemDetail = () => {
           <div className="w-full bg-[#0A0A0A] text-white px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] font-mono border border-white/10 border-b-0 rounded-none relative gap-4">
             <div className="flex flex-wrap items-center gap-3">
               {/* Tab Selector Buttons */}
-              <button
-                onClick={() => setActiveTab("code")}
-                className={`px-4 py-2 border transition-all duration-300 font-extrabold uppercase tracking-widest ${
-                  activeTab === "code"
-                    ? "bg-[#D8F1A0] text-black border-[#D8F1A0]"
-                    : "bg-transparent text-white border-white/10 hover:border-white/30 hover:text-white"
-                }`}
-              >
-                [01] Code Workspace
-              </button>
+              {!data.isCustom && (
+                <button
+                  onClick={() => setActiveTab("code")}
+                  className={`px-4 py-2 border transition-all duration-300 font-extrabold uppercase tracking-widest ${
+                    activeTab === "code"
+                      ? "bg-[#D8F1A0] text-black border-[#D8F1A0]"
+                      : "bg-transparent text-white border-white/10 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  [01] Code Workspace
+                </button>
+              )}
               {data.homepage && (
                 <button
                   onClick={() => setActiveTab("live")}
@@ -273,30 +305,38 @@ const SystemDetail = () => {
           </div>
 
           <div className="space-y-16">
-            {/* Stats Card */}
-            <div className="border-t border-black/10 pt-8">
-              <h3 className="text-[10px] font-bold text-black/30 mb-8 uppercase tracking-[0.4em]">
-                System Telemetry
-              </h3>
-              <div className="grid grid-cols-2 gap-12">
-                <div>
-                  <div className="text-4xl font-bold text-black tracking-tighter">
-                    {data.stars}
+            {data.isCustom ? (
+              <div className="border-t border-black/10 pt-8">
+                <h3 className="text-[10px] font-bold text-black/30 mb-8 uppercase tracking-[0.4em]">
+                  Project Outcome
+                </h3>
+                <p className="text-black/60 font-medium leading-relaxed">{data.description}</p>
+              </div>
+            ) : (
+              <div className="border-t border-black/10 pt-8">
+                <h3 className="text-[10px] font-bold text-black/30 mb-8 uppercase tracking-[0.4em]">
+                  System Telemetry
+                </h3>
+                <div className="grid grid-cols-2 gap-12">
+                  <div>
+                    <div className="text-4xl font-bold text-black tracking-tighter">
+                      {data.stars}
+                    </div>
+                    <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
+                      Stargazers
+                    </div>
                   </div>
-                  <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
-                    Stargazers
-                  </div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-black tracking-tighter">
-                    {data.forks}
-                  </div>
-                  <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
-                    Distributions
+                  <div>
+                    <div className="text-4xl font-bold text-black tracking-tighter">
+                      {data.forks}
+                    </div>
+                    <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
+                      Distributions
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Tech Stack */}
             <div className="border-t border-black/10 pt-8">

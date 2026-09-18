@@ -42,7 +42,7 @@ export const customProjects = [
     impact: "Delivered a low-latency, autonomous interviewing experience capable of generating technical scores and hiring recommendations.",
     tech: ["React", "TypeScript", "Node.js", "WebSocket", "Gemini AI", "MongoDB"],
     features: ["Real-time Audio", "LLM Evaluation", "Resume Parsing"],
-    link: "https://github.com",
+    link: "https://www.mockhire.me/",
     slug: "mockhire",
     color: "#7dd3fc", // Light blue
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2565&auto=format&fit=crop"
