@@ -1,107 +1,87 @@
 export const blogPosts = [
   {
-    id: 'tutorial-to-engineering',
-    title: "How Open Source Destroyed My Tutorial-Driven Thinking",
-    category: "Architecture",
-    date: "May 2026",
-    excerpt: "The brutal reality of moving from 'code that works' to 'systems that scale'. A deep dive into the mindset shift required for professional engineering.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop", // Industrial Tech
+    id: 'building-real-time-ai-interviewer',
+    title: "Building a Real-Time AI Interviewer with Gemini",
+    category: "AI Engineering",
+    date: "September 2026",
+    excerpt: "Integrating the Gemini Live API with WebSockets for autonomous, real-time voice interviews.",
+    image: "/real_time_audio_processing_1789703508131.jpg",
     content: `
-      <p>For a long time, I thought I was learning software engineering. I was building projects, watching tutorials, learning frameworks, and making things work locally. Honestly, that felt like progress. If the feature worked, I considered it good code.</p>
+      <p>Traditional technical interviews are time-consuming and notoriously difficult to scale. To solve this, I set out to build an autonomous AI interviewer capable of holding a fluid, real-time technical conversation with a candidate. The result was MockHire AI.</p>
       
-      <p>That belief survived until I started contributing to open source. That was the first time my code was no longer just <em>my code</em>. Other developers had to review it, understand it, maintain it, and extend it. Suddenly, “it works” stopped being enough.</p>
-
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Workspace" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid rgba(255,255,255,0.05);" />
-
-      <h3>The Illusion of Competence</h3>
-      <p style="margin-bottom: 60px;">Most of my learning came from tutorials. Tutorials are useful for getting started, but they create a dangerous illusion of competence. They optimize for momentum and happy paths. Real engineering does not. Real engineering is messy. You inherit decisions, work with constraints, and design for future contributors. Tutorials rarely teach that.</p>
-
-      <h3>The "Working Code" Fallacy</h3>
-      <p>The first major shock was realizing that nobody cared that my feature “worked.” The reviews were about things I barely thought about before: validation, naming consistency, architecture, scalability, and maintainability. Working code can still be bad engineering.</p>
+      <p>The core engineering challenge was delivering a low-latency, autonomous interviewing experience. To achieve this, I leveraged the <strong>Gemini Live API</strong>.</p>
       
-      <div style="margin: 40px 0; overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
-          <thead>
-            <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
-              <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Coding</th>
-              <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Engineering</th>
-            </tr>
-          </thead>
-          <tbody style="font-weight: 500;">
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <td style="padding: 12px;">Makes the feature work</td>
-              <td style="padding: 12px;">Makes the system sustainable</td>
-            </tr>
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <td style="padding: 12px;">Focuses on now</td>
-              <td style="padding: 12px;">Considers future contributors</td>
-            </tr>
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <td style="padding: 12px;">Optimizes for speed</td>
-              <td style="padding: 12px;">Balances speed with maintainability</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px;">Solves happy paths</td>
-              <td style="padding: 12px;">Handles edge cases</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h3>Why Gemini Live?</h3>
+      <p>The Gemini Live API allows for native audio-in/audio-out streaming directly via bi-directional WebSockets. This bypasses the need for intermediary processing steps, streaming audio chunks directly and reducing round-trip latency to enable real-time candidate evaluation.</p>
 
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Code Review" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid rgba(255,255,255,0.05);" />
+      <img src="/real_time_audio_processing_1789703508131.jpg" alt="Real-Time Audio Waveforms" style="width:100%; height:auto; border-radius:8px; margin:40px 0; border:1px solid rgba(255,255,255,0.1);" />
 
-      <h3>The Mindset Shift</h3>
-      <p>I stopped treating code as something written only for the machine. I started treating it as communication for other developers. Before implementing anything, I now spend more time asking: <em>“Will this still make sense six months later?”</em></p>
-
-      <p>I've been documenting more of this transition through my engineering blog and open source work on <a href="https://github.com/AyushBhardwaj-AdRuntime" target="_blank" style="font-weight:bold;">GitHub</a>. For professional updates, connect with me on <a href="https://www.linkedin.com/in/ayushbhardwaj-dev/" target="_blank" style="font-weight:bold;">LinkedIn</a>.</p>
-
-      <p>The biggest change wasn’t my resume—it was my standards.</p>
+      <h3>Implementation Approach</h3>
+      <p>Using React and TypeScript on the frontend alongside a Node.js backend, I established a direct WebSocket connection. The system captures the user's voice, streams the audio chunks to the Gemini Live API, and processes the model's audio stream back to the user.</p>
+      
+      <p>Once the audio pipeline was active, the focus shifted to <strong>Prompt Engineering</strong>. I injected the candidate's parsed resume into the system context before the session began. The prompt constraints ensured the AI acted as a strict but constructive technical interviewer, dynamically generating responses to continue the interview flow.</p>
     `,
     isFeatured: true
   },
   {
-    id: 'gsoc-selection-reality',
-    title: "What Actually Matters in GSoC Selection",
-    category: "Career",
-    date: "May 2026",
-    excerpt: "Beyond the proposal: How contribution quality, consistency, and communication culture are the real signals organizations look for.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop", // Clean Code
+    id: 'building-mock-hire-pipeline',
+    title: "Building Mock Hire: From Resume to AI-Powered Assessment",
+    category: "Architecture",
+    date: "August 2026",
+    excerpt: "An end-to-end look at Mock Hire's product pipeline, from parsing resumes to generating dynamic technical evaluations.",
+    image: "/ai_pipeline_flow_1789703493654.jpg",
     content: `
-      <p>Thousands of students crack GSoC every year, but very few understand the internal heuristics that lead to a selection. It's not just about a 20-page proposal; it's about the technical signal you send months before the deadline.</p>
+      <p>MockHire isn't just a wrapper around an LLM; it's a complete assessment pipeline capable of generating technical scores and hiring recommendations. Here is how I built the data flow.</p>
       
-      <h3>The Signal vs. The Noise</h3>
-      <p>Most contributors focus on quantity. Real organizations focus on <strong>signal quality</strong>. Are your PRs documented? Do you handle edge cases? How do you respond when your code is torn apart in a review? That is where the selection happens.</p>
+      <img src="/ai_pipeline_flow_1789703493654.jpg" alt="Mock Hire AI Pipeline Architecture" style="width:100%; height:auto; border-radius:8px; margin:40px 0; border:1px solid rgba(255,255,255,0.1);" />
       
-      <p>I'll be branching out into more tactical guides on proposal writing and how specific orgs like C2SI evaluate their contributors soon.</p>
+      <h3>The Pipeline Architecture</h3>
+      <ul>
+        <li style="margin-bottom: 10px;"><strong>Phase 1: Ingestion.</strong> The candidate uploads a resume. The system parses the extracted text to isolate key skills and past experiences.</li>
+        <li style="margin-bottom: 10px;"><strong>Phase 2: Context Generation.</strong> The extracted data is fed into the Gemini Live API to assemble the system instructions, ensuring the AI knows exactly who it is interviewing.</li>
+        <li style="margin-bottom: 10px;"><strong>Phase 3: The Interview.</strong> A WebSocket session is established. The user communicates via real-time audio. The AI conducts the technical screen based on the specific skills found in the resume.</li>
+        <li><strong>Phase 4: Evaluation.</strong> Once the conversation ends, the LLM checks the candidate's performance against a rubric. A final summary generates a technical score and hiring recommendation, which is then stored securely in <strong>MongoDB</strong>.</li>
+      </ul>
+
+      <h3>Evaluating the Candidate</h3>
+      <p>To ensure consistency, the LLM evaluation process parses the extracted conversation and grades it. In testing, this evaluation rubric approach achieved a 98% accuracy score against manual benchmarks.</p>
+      
+      <p>Storing these structured results in MongoDB allows recruiters to efficiently track and manage candidate evaluations over time.</p>
     `
   },
   {
-    id: 'hacktoberfest-to-gsoc',
-    title: "From Hacktoberfest to GSoC in First Year",
-    category: "Story",
-    date: "May 2026",
-    excerpt: "A personal narrative on starting early, managing college expectations, and building a technical identity from day one.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop", // Laptop Tech
-    content: `<p>Coming soon: The narrative arc of my first year in college and how OSS became my primary education.</p>`
-  },
-  {
-    id: 'pr-review-lessons',
-    title: "What PR Reviews Taught Me About Software Engineering",
+    id: 'how-i-built-mockhire-agent',
+    title: "How I Built the AI Agent Behind Mock Hire",
     category: "Technical",
-    date: "May 2026",
-    excerpt: "Code is read more than it is written. Learning the art of the review and why feedback loops are an engineer's greatest tool.",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop", // Dark Code
-    content: `<p>Coming soon: A deep dive into the feedback loops that define professional software development.</p>`
-  },
-  {
-    id: 'working-code-isnt-enough',
-    title: "Why Working Code Isn’t Enough",
-    category: "Philosophy",
-    date: "June 2026",
-    excerpt: "Engineering is the art of tradeoffs. Exploring maintainability, architecture awareness, and why 'working' is just the starting point.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2070&auto=format&fit=crop", // Abstract Tech
-    content: `<p>Coming soon: My strongest take on the transition into engineering maturity.</p>`
+    date: "July 2026",
+    excerpt: "Engineering a dual-WebSocket architecture to handle low-latency audio transmission and LLM streaming simultaneously.",
+    image: "/dual_websocket_architecture_1789703482771.jpg",
+    content: `
+      <p>The technical crux of MockHire was managing the real-time audio streams securely and efficiently. To accomplish this, I architected a <strong>Dual-WebSocket Design</strong>.</p>
+      
+      <img src="/dual_websocket_architecture_1789703482771.jpg" alt="Dual WebSocket Architecture" style="width:100%; height:auto; border-radius:8px; margin:40px 0; border:1px solid rgba(255,255,255,0.1);" />
+
+      <h3>The Dual-WebSocket Data Flow</h3>
+      <p>The backend Node.js server acts as an orchestrator between the user's browser and the Gemini AI API.</p>
+
+      <ol>
+        <li style="margin-bottom: 10px;"><strong>Client-to-Server Socket:</strong> The React frontend captures the user's voice and streams the data over a WebSocket connection (0% data frame loss in optimal conditions) to the Node.js backend.</li>
+        <li style="margin-bottom: 10px;"><strong>Server-to-Gemini Socket:</strong> The Node.js server maintains a separate secure WebSocket connection to the Google Gemini Live API, streaming the audio chunks directly to the LLM for inference.</li>
+      </ol>
+
+      <p>When Gemini generates a response, the audio flows in reverse: Gemini streams audio chunks to the Node.js server, which immediately pipes them down to the React frontend for playback.</p>
+
+      <h3>Managing the State</h3>
+      <p>By keeping the LLM connection isolated on the backend, I was able to protect API keys while still leveraging the speed of bi-directional WebSockets. The system architecture proved scalable and robust enough to handle the active stream of audio chunks required for real-time candidate evaluation.</p>
+    `
   }
 ];
 
-export const categories = ["Architecture", "Technical", "Career", "Philosophy", "Story"];
+export const categories = [
+  "AI Engineering",
+  "Architecture",
+  "Technical",
+  "Career",
+  "Philosophy",
+  "Story"
+];

@@ -120,6 +120,7 @@ const Blogs = () => {
             </article>
  
             {/* Bottom Media Card */}
+            {fourthPost && (
             <article>
               <Link to={`/thinking/${fourthPost.id}`} className="block group">
                 <motion.div 
@@ -143,6 +144,7 @@ const Blogs = () => {
                 </motion.div>
               </Link>
             </article>
+            )}
           </div>
  
           {/* ═══ RIGHT COLUMN ═══ */}
