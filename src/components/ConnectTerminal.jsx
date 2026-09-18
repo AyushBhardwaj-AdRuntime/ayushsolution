@@ -22,6 +22,7 @@ const ConnectTerminal = () => {
     try {
       if (import.meta.env.DEV) {
         // Simulate network delay for local testing
+        console.warn("Contact form: local simulation — no email sent.");
         await new Promise(resolve => setTimeout(resolve, 1000));
         setStatus("success");
         setFormData({ name: "", email: "", phone: "", projectTitle: "General Inquiry", summary: "" });

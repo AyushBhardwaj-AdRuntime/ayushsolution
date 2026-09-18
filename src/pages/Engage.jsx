@@ -36,6 +36,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
     try {
       if (import.meta.env.DEV) {
         // Simulate network request for local testing
+        console.warn("Contact form: local simulation — no email sent.");
         await new Promise(resolve => setTimeout(resolve, 1000));
         setName("");
         setEmail("");
