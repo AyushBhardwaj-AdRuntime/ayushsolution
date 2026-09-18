@@ -1,13 +1,13 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
-import { publishedBlogPosts } from "../data/blogData";
+import { blogPosts } from "../data/blogData";
 import React, { useRef } from "react";
 import DOMPurify from "dompurify";
 
 const ThinkingArticle = () => {
   const { slug } = useParams();
-  const post = publishedBlogPosts.find((p) => p.id === slug);
+  const post = blogPosts.find((p) => p.id === slug);
   const containerRef = useRef(null);
   
   useDocumentSEO({

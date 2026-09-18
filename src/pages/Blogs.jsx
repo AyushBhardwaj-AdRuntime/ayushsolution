@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import useDocumentSEO from "../hooks/useDocumentSEO";
-import { publishedBlogPosts, categories } from "../data/blogData";
+import { blogPosts, categories } from "../data/blogData";
 
 const Blogs = () => {
   useDocumentSEO({
@@ -9,7 +9,7 @@ const Blogs = () => {
     description: "Explore deep dives into system architecture, AI engineering, and software design principles.",
   });
 
-  const [featuredPost, ...otherPosts] = publishedBlogPosts;
+  const [featuredPost, secondPost, thirdPost, fourthPost, ...otherPosts] = blogPosts;
 
   return (
     <motion.div
@@ -42,37 +42,46 @@ const Blogs = () => {
         </div>
 
         {featuredPost && (
-          <article className="mb-8">
-            <Link
-              to={`/thinking/${featuredPost.id}`}
-              className="group grid grid-cols-1 lg:grid-cols-2 min-h-[560px] bg-black overflow-hidden"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="w-full h-full min-h-[320px] object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s]"
-                />
-              </div>
-              <div className="p-10 md:p-16 flex flex-col justify-between text-white">
-                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">
-                  Featured . {featuredPost.category} . {featuredPost.date}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <article className="mb-8">
+              <Link
+                to={`/thinking/${featuredPost.id}`}
+                className="group grid grid-cols-1 lg:grid-cols-2 min-h-[560px] bg-black overflow-hidden"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    className="w-full h-full min-h-[320px] object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s]"
+                  />
                 </div>
-                <div>
-                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-8 group-hover:italic transition-all">
-                    {featuredPost.title}
-                  </h2>
-                  <p className="text-white/60 font-medium leading-relaxed max-w-xl">
-                    {featuredPost.excerpt}
-                  </p>
+                <div className="p-10 md:p-16 flex flex-col justify-between text-white">
+                  <div className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">
+                    Featured . {featuredPost.category} . {featuredPost.date}
+                  </div>
+                  <div>
+                    <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-8 group-hover:italic transition-all">
+                      {featuredPost.title}
+                    </h2>
+                    <p className="text-white/60 font-medium leading-relaxed max-w-xl">
+                      {featuredPost.excerpt}
+                    </p>
+                  </div>
                 </div>
               </Link>
             </article>
           </motion.div>
- 
+        )}
+         {/* Main Grid Architecture */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
           {/* ═══ MIDDLE COLUMN ═══ */}
           <div className="md:col-span-4 flex flex-col gap-6">
             {/* Top Text Card */}
+            {secondPost && (
             <article>
               <Link to={`/thinking/${secondPost.id}`} className="block group text-left">
                 <motion.div 
@@ -106,6 +115,7 @@ const Blogs = () => {
                 </motion.div>
               </Link>
             </article>
+            )}
  
             {/* Bottom Media Card */}
             {fourthPost && (
@@ -138,6 +148,7 @@ const Blogs = () => {
           {/* ═══ RIGHT COLUMN ═══ */}
           <div className="md:col-span-3 flex flex-col gap-6">
             {/* Top Vertical Card */}
+            {thirdPost && (
             <article>
               <Link to={`/thinking/${thirdPost.id}`} className="block group">
                 <motion.div 
@@ -161,8 +172,11 @@ const Blogs = () => {
                 </motion.div>
               </Link>
             </article>
+            )}
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
           {otherPosts.map((post, index) => (
             <motion.article
               key={post.id}

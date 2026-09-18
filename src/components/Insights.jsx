@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { publishedBlogPosts } from "../data/blogData";
+import { blogPosts } from "../data/blogData";
 
 const Insights = () => {
-  const articles = publishedBlogPosts.slice(0, 3);
+  const articles = blogPosts.slice(0, 3);
 
   return (
     <section className="py-36 md:py-52 bg-white border-t border-black/5">
