@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { customProjects } from "../data/customProjects";
+import { projectPhotoIds } from "../data/projectPhotos";
 
 export const useGitHubProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     const fetchProjects = async () => {
       try {
         let res = await axios.get("/api/projects");
@@ -33,19 +38,7 @@ export const useGitHubProjects = () => {
                 return b.stargazers_count - a.stargazers_count;
               })
               .map(repo => {
-                const photoIds = [
-                  "1555066931-4365d14bab8c", // Code
-                  "1550745165-9bc0b252726f", // Hardware
-                  "1461749280684-dccba630e2f6", // Code screen
-                  "1498050108023-c5249f4df085", // Laptop
-                  "1517694712202-14dd9538aa97", // Laptop code
-                  "1587620962725-abab7fe55159", // Tech setup
-                  "1525373612132-b3e820b87cea", // AI/Chip
-                  "1531297484001-80022131f5a1", // Circuits
-                  "1518770660439-4636190af475", // CPU
-                  "1550745165-9bc0b252726f"  // Tech gear
-                ];
-                const photoId = photoIds[repo.id % photoIds.length];
+                const photoId = projectPhotoIds[repo.id % projectPhotoIds.length];
                 return {
                   id: repo.id,
                   title: repo.name.replace(/-/g, ' ').replace(/_/g, ' '),
@@ -101,7 +94,7 @@ export const useGitHubProjects = () => {
       } catch (err) {
         console.error("Failed to fetch GitHub projects", err);
         setError(err);
-        setProjects([]); // Fallback to empty array
+        setProjects(customProjects);
       } finally {
         setLoading(false);
       }

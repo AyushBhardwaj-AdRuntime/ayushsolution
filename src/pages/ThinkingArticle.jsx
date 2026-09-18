@@ -1,13 +1,13 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
-import { blogPosts } from "../data/blogData";
+import { publishedBlogPosts } from "../data/blogData";
 import React, { useRef } from "react";
 import DOMPurify from "dompurify";
 
 const ThinkingArticle = () => {
   const { slug } = useParams();
-  const post = blogPosts.find((p) => p.id === slug);
+  const post = publishedBlogPosts.find((p) => p.id === slug);
   const containerRef = useRef(null);
   
   useDocumentSEO({
@@ -134,7 +134,7 @@ const ThinkingArticle = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5">
-                {blogPosts.filter(p => p.id !== slug).slice(0, 2).map((other) => (
+                {publishedBlogPosts.filter(p => p.id !== slug).slice(0, 2).map((other) => (
                   <Link 
                     key={other.id} 
                     to={`/thinking/${other.id}`}

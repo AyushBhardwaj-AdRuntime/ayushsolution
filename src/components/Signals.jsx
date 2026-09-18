@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useGitHubSignals } from "../hooks/useGitHubSignals";
-import { useCodeforcesSignals } from "../hooks/useCodeforcesSignals";
 import { formatDistanceToNow } from "date-fns";
 
 const SignalCard = ({ label, value, subtext, loading, delay }) => (
@@ -37,24 +36,19 @@ const SignalCard = ({ label, value, subtext, loading, delay }) => (
 
 const Signals = () => {
   const { data: github, loading: ghLoading } = useGitHubSignals();
-  const { data: cf, loading: cfLoading } = useCodeforcesSignals();
   const [systemState, setSystemState] = useState("SYNCING");
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (ghLoading || cfLoading) {
+    if (ghLoading) {
         setSystemState("SYNCING");
     } else {
         setSystemState("LIVE TELEMETRY");
     }
-  }, [ghLoading, cfLoading]);
+  }, [ghLoading]);
 
   const lastActiveGH = github?.lastActive 
     ? formatDistanceToNow(new Date(github.lastActive), { addSuffix: true }) 
-    : "Syncing...";
-
-  const lastActiveCF = cf?.lastContest
-    ? formatDistanceToNow(new Date(cf.lastContest), { addSuffix: true })
     : "Syncing...";
 
   return (
@@ -77,7 +71,7 @@ const Signals = () => {
                     opacity: [1, 0.5, 1]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className={`w-3 h-3 rounded-full ${ghLoading || cfLoading ? "bg-black/10" : "bg-black"}`}
+                  className={`w-3 h-3 rounded-full ${ghLoading ? "bg-black/10" : "bg-black"}`}
                 ></motion.span>
                 <h3 className="text-[10px] font-bold text-black/60 uppercase tracking-[0.6em]">
                     Real-time Protocol Signals
@@ -88,7 +82,7 @@ const Signals = () => {
             </span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-16">
             <SignalCard 
                 label="Repositories" 
                 value={github?.totalRepos} 
@@ -107,30 +101,12 @@ const Signals = () => {
                 loading={ghLoading} 
                 delay={0.3} 
             />
-             <SignalCard 
-                label="CF MAX" 
-                value={cf?.maxRating} 
-                subtext={cf?.rank}
-                loading={cfLoading} 
-                delay={0.4} 
-            />
-             <SignalCard 
-                label="Solved" 
-                value={cf?.uniqueSolved} 
-                loading={cfLoading} 
-                delay={0.5} 
-            />
-            
             <div className="flex flex-col justify-end lg:pl-12 lg:border-l lg:border-black/5">
                  <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">Pulse</span>
                  <div className="space-y-3">
                     <div className="flex justify-between items-center gap-6 text-[10px] font-bold text-black/60 uppercase tracking-widest">
                         <span>GitHub</span>
                         <span className="italic">{ghLoading ? "..." : lastActiveGH}</span>
-                    </div>
-                     <div className="flex justify-between items-center gap-6 text-[10px] font-bold text-black/60 uppercase tracking-widest">
-                        <span>Codeforces</span>
-                         <span className="italic">{cfLoading ? "..." : lastActiveCF}</span>
                     </div>
                  </div>
             </div>

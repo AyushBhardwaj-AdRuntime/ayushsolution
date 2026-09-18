@@ -49,6 +49,7 @@ const Nav = () => {
   const navLinks = [
     { to: "/systems", label: "Projects" },
     { to: "/blogs", label: "Blogs" },
+    { to: "/engage", label: "Engage" },
     { to: "/resume", label: "Resume" },
   ];
 

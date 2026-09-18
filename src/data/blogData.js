@@ -21,7 +21,8 @@ export const blogPosts = [
       
       <p>Once the audio pipeline was active, the focus shifted to <strong>Prompt Engineering</strong>. I injected the candidate's parsed resume into the system context before the session began. The prompt constraints ensured the AI acted as a strict but constructive technical interviewer, dynamically generating responses to continue the interview flow.</p>
     `,
-    isFeatured: true
+    isFeatured: true,
+    published: true
   },
   {
     id: 'building-mock-hire-pipeline',
