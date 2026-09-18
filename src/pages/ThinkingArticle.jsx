@@ -134,7 +134,7 @@ const ThinkingArticle = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5">
-                {publishedBlogPosts.filter(p => p.id !== slug).slice(0, 2).map((other) => (
+                {blogPosts.filter(p => p.id !== slug).slice(0, 2).map((other) => (
                   <Link 
                     key={other.id} 
                     to={`/thinking/${other.id}`}
