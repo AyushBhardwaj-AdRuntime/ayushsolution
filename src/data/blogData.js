@@ -52,13 +52,13 @@ export const blogPosts = [
   },
   {
     id: 'how-i-built-mockhire-agent',
-    title: "How I Built the AI Agent Behind Mock Hire",
-    category: "Technical",
+    title: "How I Built the Agentic AI Behind Mock Hire",
+    category: "AI Engineering",
     date: "July 2026",
-    excerpt: "Engineering a dual-WebSocket architecture to handle low-latency audio transmission and LLM streaming simultaneously.",
+    excerpt: "Engineering a dual-WebSocket architecture and Agentic RAG pipeline to handle low-latency audio transmission and LLM streaming simultaneously.",
     image: "/dual_websocket_architecture_1789703482771.jpg",
     content: `
-      <p>The technical crux of MockHire was managing the real-time audio streams securely and efficiently. To accomplish this, I architected a <strong>Dual-WebSocket Design</strong>.</p>
+      <p>The technical crux of MockHire was managing the real-time audio streams securely and efficiently while integrating Agentic AI evaluation. To accomplish this, I architected a <strong>Dual-WebSocket Design alongside a Retrieval-Augmented Generation (RAG) pipeline</strong>.</p>
       
       <img src="/dual_websocket_architecture_1789703482771.jpg" alt="Dual WebSocket Architecture" style="width:100%; height:auto; border-radius:8px; margin:40px 0; border:1px solid rgba(255,255,255,0.1);" />
 
@@ -72,8 +72,9 @@ export const blogPosts = [
 
       <p>When Gemini generates a response, the audio flows in reverse: Gemini streams audio chunks to the Node.js server, which immediately pipes them down to the React frontend for playback.</p>
 
-      <h3>Managing the State</h3>
-      <p>By keeping the LLM connection isolated on the backend, I was able to protect API keys while still leveraging the speed of bi-directional WebSockets. The system architecture proved scalable and robust enough to handle the active stream of audio chunks required for real-time candidate evaluation.</p>
+      <h3>Managing the State & RAG Integration</h3>
+      <p>By keeping the LLM connection isolated on the backend, I was able to protect API keys and inject the candidate's resume via a RAG (Retrieval-Augmented Generation) pipeline before the interview began. This gave the Agentic AI deep context about the candidate's background, allowing it to ask hyper-personalized technical questions.</p>
+      <p>The system architecture proved scalable and robust enough to handle the active stream of audio chunks required for real-time, autonomous candidate evaluation.</p>
     `
   }
 ];

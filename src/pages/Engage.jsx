@@ -34,6 +34,17 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
     setStatus("sending");
 
     try {
+      if (import.meta.env.DEV) {
+        // Simulate network request for local testing
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSummary("");
+        setStatus("sent");
+        return;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,7 +121,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={status === "sending"}
-            className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/10"
+            className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/40"
             placeholder="John Doe"
           />
         </div>
@@ -130,7 +141,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === "sending"}
-              className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/10"
+              className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/40"
               placeholder="john@example.com"
             />
           </div>
@@ -147,7 +158,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               disabled={status === "sending"}
-              className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/10"
+              className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/40"
               placeholder="+1 (555) 000-0000"
             />
           </div>
@@ -168,7 +179,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
             disabled={status === "sending"}
-            className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/10 resize-none"
+            className="w-full bg-transparent border-b border-black/10 px-0 py-4 text-text font-body text-xl focus:outline-none focus:border-accent transition-all placeholder:text-text/40 resize-none"
             placeholder="Describe your project requirements and objectives..."
           />
         </div>

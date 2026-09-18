@@ -20,6 +20,14 @@ const ConnectTerminal = () => {
     e.preventDefault();
     setStatus("loading");
     try {
+      if (import.meta.env.DEV) {
+        // Simulate network delay for local testing
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", projectTitle: "General Inquiry", summary: "" });
+        return;
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -152,7 +160,7 @@ const ConnectTerminal = () => {
                   onChange={handleChange}
                   type="text" 
                   placeholder="e.g. John Doe / Nexus Corp"
-                  className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/10"
+                  className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/40"
                 />
               </div>
 
@@ -169,7 +177,7 @@ const ConnectTerminal = () => {
                     onChange={handleChange}
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/10"
+                    className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/40"
                   />
                 </div>
                 <div className="space-y-2 border-b border-black/10 pb-4">
@@ -183,7 +191,7 @@ const ConnectTerminal = () => {
                     onChange={handleChange}
                     type="tel" 
                     placeholder="+1 234 567 890"
-                    className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/10"
+                    className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/40"
                   />
                 </div>
               </div>
@@ -218,8 +226,8 @@ const ConnectTerminal = () => {
                   value={formData.summary}
                   onChange={handleChange}
                   rows="3"
-                  placeholder="Describe your architectural requirements..."
-                  className="w-full bg-transparent border-none outline-none text-lg font-medium text-black placeholder:text-black/10 resize-none"
+                  placeholder="Describe your technical requirements..."
+                  className="w-full bg-transparent border-none outline-none text-lg font-medium text-black resize-none placeholder:text-black/40"
                 />
               </div>
 
